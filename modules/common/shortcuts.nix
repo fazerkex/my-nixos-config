@@ -20,10 +20,22 @@
       "Switch to Desktop 5" = "Meta+5";
       "Window Close" = "Meta+W";
     };
+
     "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+Return"; };
     "services/org.kde.dolphin.desktop" = { "_launch" = "Meta+F"; };
-    "services/brave-browser.desktop" = { "_launch" = "Meta+B"; };
     "services/code.desktop" = { "_launch" = "Meta+C"; };
-    "services/protonmail.desktop" = { "_launch" = "Meta+M"; };
+
+    # This creates a "Custom Command" shortcut
+    "commands" = {
+      "Launch Brave App" = {
+        command = "brave --app=https://brave.com"; # Put your command here
+        keys = "Meta+B";
+      };
+      
+      "Launch Proton Mail" = {
+        command = "brave --app=https://mail.proton.me";
+        keys = "Meta+M";
+      };
+    };
   };
 }
