@@ -76,7 +76,7 @@
       "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+Return"; };
       "services/org.kde.dolphin.desktop" = { "_launch" = "Meta+F"; };
       "services/brave-browser.desktop" = { "_launch" = "Meta+B"; };
-      "services/code.desktop" = { "_launch" = "Meta+C"; }; # Changed to Meta+C
+      "services/code.desktop" = { "_launch" = "Meta+C"; }; 
       "services/protonmail.desktop" = { "_launch" = "Meta+M"; };
     };
   };
