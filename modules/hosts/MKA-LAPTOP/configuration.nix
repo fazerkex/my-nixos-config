@@ -8,7 +8,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "MKA-PC";
+  networking.hostName = "MKA-LAPTOP";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Berlin";

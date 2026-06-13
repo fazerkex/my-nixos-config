@@ -19,11 +19,11 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
-      "MKA-PC" = nixpkgs.lib.nixosSystem {
+      "MKA-LAPTOP" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./modules/hosts/MKA-PC/default.nix
+          ./modules/hosts/MKA-LAPTOP/default.nix
 
           home-manager.nixosModules.home-manager
           {
