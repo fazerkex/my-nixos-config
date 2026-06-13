@@ -67,6 +67,16 @@
     ];
   };
 
+  # Automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
+  # Optimize storage (replaces identical files with hard links)
+  nix.settings.auto-optimise-store = true;
+
   # fish setup
   programs.fish.enable = true;
   users.users.mka.shell = pkgs.fish;
