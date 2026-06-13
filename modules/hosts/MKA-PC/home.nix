@@ -29,6 +29,7 @@
     btop
     ripgrep
     wl-clipboard
+    gh
   ];
 
   # Custom Proton Mail Desktop App
