@@ -61,6 +61,14 @@
         # We removed the clipboard_action override, so Meta+V naturally opens the clipboard again!
       };
 
+      # Kill the Power Profile shortcut
+      "powerdevil" = {
+        "Switch to Power Saver" = [ ];
+        "Switch to Balanced" = [ ];
+        "Switch to Performance" = [ ];
+        "Toggle Power Profile" = [ ]; # This is the one grabbing Meta+B
+      };
+      
       "kwin" = {
         "Overview" = [ ]; # Frees up Meta+W
         
