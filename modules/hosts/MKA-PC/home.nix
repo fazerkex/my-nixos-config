@@ -8,6 +8,18 @@
 
   home.stateVersion = "26.05";
 
+  programs.git = {
+    enable = true;
+    userName = "maydin5";
+    userEmail = "muhammed_kerim.aydin@smail.th-koeln.de";
+
+    # Optional but highly recommended:
+    # Tells git to default to 'main' instead of 'master' for new repos
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
+  };
+
   # User Software & Recommendations
   home.packages = with pkgs; [
     ghostty       # Your new terminal
