@@ -1,38 +1,33 @@
 { config, pkgs, inputs, ... }:
 
 {
-  # Import Plasma Manager
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
   ];
 
   home.stateVersion = "26.05";
 
+  # Git Configuration
   programs.git = {
     enable = true;
     userName = "maydin5";
     userEmail = "muhammed_kerim.aydin@smail.th-koeln.de";
-
-    # Optional but highly recommended:
-    # Tells git to default to 'main' instead of 'master' for new repos
     extraConfig = {
       init.defaultBranch = "main";
     };
   };
 
-  # User Software & Recommendations
+  # User Software
   home.packages = with pkgs; [
-    ghostty       # Your new terminal
-    neovim        # The modern vim
-    lazydocker    # The ultimate Docker TUI (run 'lazydocker' in terminal)
-
-    # --- Highly Recommended Extras ---
-    btop          # A gorgeous, highly detailed task manager (run 'btop')
-    ripgrep       # Ultra-fast search tool (crucial for Neovim plugins)
-    wl-clipboard  # Allows Neovim and terminal apps to copy/paste to Wayland
+    ghostty
+    neovim
+    lazydocker
+    btop
+    ripgrep
+    wl-clipboard
   ];
 
-  # Create a custom app for Proton Mail Webapp
+  # Custom Proton Mail Desktop App
   xdg.desktopEntries.protonmail = {
     name = "Proton Mail";
     exec = "brave --app=https://mail.proton.me";
@@ -41,37 +36,38 @@
     categories = [ "Network" "WebBrowser" ];
   };
 
-  # KDE Plasma Declarative Settings & Keybindings
+  # KDE Plasma Declarative Settings
   programs.plasma = {
     enable = true;
 
-    # Set Ghostty as the default KDE terminal
     configFile.kdeglobals.General.TerminalApplication = "ghostty";
 
     shortcuts = {
-      # Window Management
       "kwin" = {
         "Switch to Desktop 1" = "Meta+1";
         "Switch to Desktop 2" = "Meta+2";
         "Switch to Desktop 3" = "Meta+3";
         "Switch to Desktop 4" = "Meta+4";
+        "Switch to Desktop 5" = "Meta+5";
+        "Switch to Desktop 6" = "Meta+6";
+        "Switch to Desktop 7" = "Meta+7";
         "Window Close" = "Meta+W";
       };
 
-      # App Launchers (Notice the "_launch" attribute)
       "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+Return"; };
       "services/org.kde.dolphin.desktop" = { "_launch" = "Meta+F"; };
       "services/brave-browser.desktop" = { "_launch" = "Meta+B"; };
       "services/code.desktop" = { "_launch" = "Meta+V"; };
       "services/protonmail.desktop" = { "_launch" = "Meta+M"; };
     };
+  };
 
   # VS Code
   programs.vscode = {
     enable = true;
   };
 
-  # Brave with Touchpad Swipes
+  # Brave Browser
   programs.brave = {
     enable = true;
     commandLineArgs = [
@@ -80,7 +76,7 @@
     ];
   };
 
-  # Force Default XDG Apps
+  # Default Applications
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
