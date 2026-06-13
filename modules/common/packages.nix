@@ -1,5 +1,17 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
+    ghostty
+    neovim
+    lazydocker
+    btop
+    ripgrep
+    wl-clipboard
+    gh
+    localsend
+    steam
+    libinput-gestures
+    starship
+    zoxidem
     git
     nano
     python3 
@@ -14,4 +26,10 @@
     nerd-fonts.symbols-only 
     nerd-fonts.jetbrains-mono 
   ];
+
+  programs.vscode = {enable = true;};
+
+  programs.brave = {enable = true;};
+
+
 }
