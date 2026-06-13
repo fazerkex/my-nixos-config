@@ -55,10 +55,13 @@
     };
   };
 
+  # Enable Docker System-Wide
+  virtualisation.docker.enable = true;
+
   users.users."mka" = {
     isNormalUser = true;
     description = "MKA";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       kdePackages.kate
     ];
@@ -68,19 +71,6 @@
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "26.05";
-
-  # Enable Docker System-Wide
-  virtualisation.docker.enable = true;
-
-  users.users."mka" = {
-    isNormalUser = true;
-    description = "MKA";
-    # Added "docker" so you have permission to use it
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
-  };
 
   # System-wide packages
   environment.systemPackages = with pkgs; [
