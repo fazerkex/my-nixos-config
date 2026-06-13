@@ -10,8 +10,8 @@
   # Git Configuration
   programs.git = {
     enable = true;
-    userName = "maydin5";
-    userEmail = "muhammed_kerim.aydin@smail.th-koeln.de";
+    settings.userName = "maydin5";
+    settings.userEmail = "muhammed_kerim.aydin@smail.th-koeln.de";
     extraConfig = {
       init.defaultBranch = "main";
     };
