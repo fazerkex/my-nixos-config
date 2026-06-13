@@ -21,6 +21,16 @@
     };
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true; # Automatically hooks 'cd'
+  };
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+  
   # User Software
   home.packages = with pkgs; [
     ghostty
@@ -31,6 +41,14 @@
     wl-clipboard
     gh
     localsend
+    steam
+    libinput-gestures
+    fastfetch
+    fzf
+    bat
+    zoxide
+    starship
+    direnv
   ];
 
   # Custom Proton Mail Desktop App
@@ -68,7 +86,7 @@
         "Switch to Performance" = [ ];
         "Toggle Power Profile" = [ ]; # This is the one grabbing Meta+B
       };
-      
+
       "kwin" = {
         "Overview" = [ ]; # Frees up Meta+W
         
