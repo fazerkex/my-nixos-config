@@ -44,24 +44,37 @@
   programs.plasma = {
     enable = true;
 
+    # Force KDE to generate 4 virtual desktops
+    kwin.virtualDesktops.number = 4;
+
     configFile.kdeglobals.General.TerminalApplication = "ghostty";
 
     shortcuts = {
+      # --- explicitly unbind conflicting defaults ---
+      "plasmashell" = {
+        "activate task manager entry 1" = [ ];
+        "activate task manager entry 2" = [ ];
+        "activate task manager entry 3" = [ ];
+        "activate task manager entry 4" = [ ];
+        # We removed the clipboard_action override, so Meta+V naturally opens the clipboard again!
+      };
+
       "kwin" = {
+        "Overview" = [ ]; # Frees up Meta+W
+        
+        # --- your custom window management ---
         "Switch to Desktop 1" = "Meta+1";
         "Switch to Desktop 2" = "Meta+2";
         "Switch to Desktop 3" = "Meta+3";
         "Switch to Desktop 4" = "Meta+4";
-        "Switch to Desktop 5" = "Meta+5";
-        "Switch to Desktop 6" = "Meta+6";
-        "Switch to Desktop 7" = "Meta+7";
         "Window Close" = "Meta+W";
       };
-
+      
+      # --- your custom app launchers ---
       "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+Return"; };
       "services/org.kde.dolphin.desktop" = { "_launch" = "Meta+F"; };
       "services/brave-browser.desktop" = { "_launch" = "Meta+B"; };
-      "services/code.desktop" = { "_launch" = "Meta+V"; };
+      "services/code.desktop" = { "_launch" = "Meta+C"; }; # Changed to Meta+C
       "services/protonmail.desktop" = { "_launch" = "Meta+M"; };
     };
   };
