@@ -3,7 +3,7 @@
 {
   # Import Plasma Manager
   imports = [
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+    inputs.plasma-manager.homeModules.plasma-manager
   ];
 
   home.stateVersion = "26.05";
@@ -58,14 +58,13 @@
         "Window Close" = "Meta+W";
       };
 
-      # App Launchers (Mapping to their .desktop files)
-      "services/com.mitchellh.ghostty.desktop" = "Meta+Return";
-      "services/org.kde.dolphin.desktop" = "Meta+F";
-      "services/brave-browser.desktop" = "Meta+B";
-      "services/code.desktop" = "Meta+V";
-      "services/protonmail.desktop" = "Meta+M";
+      # App Launchers (Notice the "_launch" attribute)
+      "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+Return"; };
+      "services/org.kde.dolphin.desktop" = { "_launch" = "Meta+F"; };
+      "services/brave-browser.desktop" = { "_launch" = "Meta+B"; };
+      "services/code.desktop" = { "_launch" = "Meta+V"; };
+      "services/protonmail.desktop" = { "_launch" = "Meta+M"; };
     };
-  };
 
   # VS Code
   programs.vscode = {
