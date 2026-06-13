@@ -23,12 +23,19 @@
 
   programs.fish = {
     enable = true;
-    # Your rebuild alias
+    
+    # 1. Disable the welcome message
+    interactiveShellInit = ''
+      set -g fish_greeting ""
+    '';
+
+    # 2. Alias cd to z (zoxide)
     shellAliases = {
       rebuild = "~/NixOS/rebuild.sh";
+      cd = "z"; 
     };
   };
-
+  
   # Make sure zoxide and starship hook into Fish
   programs.zoxide = {
     enable = true;
@@ -71,16 +78,16 @@
   # Ghosty config
   xdg.configFile."ghostty/config".text = ''
     font-family = "JetBrainsMono Nerd Font"
-    font-size = 12
-    theme = "nord"
+    font-size = 14
+    theme = "Nord"
   '';
 
   # KDE Plasma Declarative Settings
   programs.plasma = {
     enable = true;
 
-    # Force KDE to generate 4 virtual desktops
-    kwin.virtualDesktops.number = 4;
+    # Force KDE to generate 5 virtual desktops
+    kwin.virtualDesktops.number = 5;
 
     configFile.kdeglobals.General.TerminalApplication = "ghostty";
 
@@ -91,15 +98,8 @@
         "activate task manager entry 2" = [ ];
         "activate task manager entry 3" = [ ];
         "activate task manager entry 4" = [ ];
+        "activate task manager entry 5" = [ ];
         # We removed the clipboard_action override, so Meta+V naturally opens the clipboard again!
-      };
-
-      # Kill the Power Profile shortcut
-      "powerdevil" = {
-        "Switch to Power Saver" = [ ];
-        "Switch to Balanced" = [ ];
-        "Switch to Performance" = [ ];
-        "Toggle Power Profile" = [ ]; # This is the one grabbing Meta+B
       };
 
       "kwin" = {
@@ -110,6 +110,7 @@
         "Switch to Desktop 2" = "Meta+2";
         "Switch to Desktop 3" = "Meta+3";
         "Switch to Desktop 4" = "Meta+4";
+        "Switch to Desktop 5" = "Meta+5";
         "Window Close" = "Meta+W";
       };
       
