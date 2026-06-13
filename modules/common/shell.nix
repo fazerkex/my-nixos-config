@@ -11,7 +11,9 @@
     };
   };
 
-  # Hook zoxide and starship into Fish
+  # Hook zoxide into Fish
   programs.zoxide = { enable = true; enableFishIntegration = true; };
-  programs.starship = { enable = true; enableFishIntegration = true; };
+  
+  # Hook starship into Fish
+  programs.starship = { enable = true; };
 }

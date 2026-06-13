@@ -1,0 +1,15 @@
+# --- Nix / Build artifacts ---
+result
+result-*
+.direnv
+.nix-profile
+
+# --- Secrets (If you move to sops-nix later) ---
+secrets/*.key
+secrets/*.decrypted
+
+# --- OS / Editor junk ---
+.DS_Store
+.vscode/
+*~
+*.swp
