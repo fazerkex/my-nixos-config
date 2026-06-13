@@ -30,6 +30,7 @@
     ripgrep
     wl-clipboard
     gh
+    localsend
   ];
 
   # Custom Proton Mail Desktop App
