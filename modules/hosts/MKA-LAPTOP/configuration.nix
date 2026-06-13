@@ -67,6 +67,10 @@
     ];
   };
 
+  # fish setup
+  programs.fish.enable = true;
+  users.users.mka.shell = pkgs.fish;
+
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
 
@@ -77,5 +81,11 @@
     git
     nano      # Usually pre-installed, but explicitly declaring it is safer
     python3   # Python runtime
+  ];
+
+  # Enable fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.symbols-only # This gives you the icons for Starship
+    nerd-fonts.jetbrains-mono
   ];
 }

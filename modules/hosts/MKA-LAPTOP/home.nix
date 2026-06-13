@@ -21,16 +21,24 @@
     };
   };
 
-  programs.zoxide = {
+  programs.fish = {
     enable = true;
-    enableBashIntegration = true; # Automatically hooks 'cd'
+    # Your rebuild alias
+    shellAliases = {
+      rebuild = "~/NixOS/rebuild.sh";
+    };
   };
 
+  # Make sure zoxide and starship hook into Fish
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   programs.starship = {
     enable = true;
-    enableBashIntegration = true;
+    enableFishIntegration = true;
   };
-  
+
   # User Software
   home.packages = with pkgs; [
     ghostty
@@ -59,6 +67,13 @@
     terminal = false;
     categories = [ "Network" "WebBrowser" ];
   };
+
+  # Ghosty config
+  xdg.configFile."ghostty/config".text = ''
+    font-family = "JetBrainsMono Nerd Font"
+    font-size = 12
+    theme = "nord"
+  '';
 
   # KDE Plasma Declarative Settings
   programs.plasma = {
