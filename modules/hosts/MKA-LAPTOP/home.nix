@@ -1,7 +1,10 @@
 { config, pkgs, inputs, ... }: {
   imports = [ 
     inputs.plasma-manager.homeModules.plasma-manager
-    ../../common/shortcuts.nix ];
+    ../../common/shortcuts.nix 
+    ../../common/default_apps.nix
+    ../../common/programs.nix
+    ];
     
   home.stateVersion = "26.05";
 
@@ -13,9 +16,6 @@
       init = { defaultBranch = "main"; };
     };
   };
-
-  # Your apps
-  home.packages = with pkgs; [ ghostty neovim lazydocker ripgrep wl-clipboard gh localsend steam libinput-gestures fastfetch fzf bat direnv sops ];
 
   # Desktop & Shell settings
   programs.plasma = {

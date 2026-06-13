@@ -1,5 +1,9 @@
 { pkgs, ... }: {
   programs.plasma.shortcuts = {
+    "Power Management" = {
+       "Switch Power Profile" = [ ];
+    };
+
     "plasmashell" = {
       "activate task manager entry 1" = [ ];
       "activate task manager entry 2" = [ ];

@@ -11,7 +11,7 @@
     steam
     libinput-gestures
     starship
-    zoxidem
+    zoxide
     git
     nano
     python3 
@@ -19,17 +19,12 @@
     fastfetch 
     fzf 
     bat 
-    direnv 
+    direnv
+    brave
   ];
   
   fonts.packages = with pkgs; [ 
     nerd-fonts.symbols-only 
     nerd-fonts.jetbrains-mono 
   ];
-
-  programs.vscode = {enable = true;};
-
-  programs.brave = {enable = true;};
-
-
 }
