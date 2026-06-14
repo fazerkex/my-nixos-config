@@ -7,15 +7,20 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, plasma-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, plasma-manager, sops-nix, ... }@inputs: {
     nixosConfigurations = {
       "MKA-LAPTOP" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./modules/hosts/MKA-LAPTOP/configuration.nix
+
+          sops-nix.nixosModules.sops
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

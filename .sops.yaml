@@ -1,0 +1,10 @@
+keys:
+  - &mka_user age1s4rg2d0vethjy0fnudw3z4022cjnmdeq09fn7amw8knf8vedqdqq6p58gt
+  - &mka_age age1zzyu5cytjxg3hyjen59apnrmz55052g59pga74nas3vkuuw4kvpsaqkpd9
+
+creation_rules:
+  - path_regex: secrets/.*\.(yaml|yml|json|env|ini)$
+    key_groups:
+      - age:
+          - *mka_user
+          - *mka_age

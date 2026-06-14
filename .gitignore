@@ -1,10 +1,10 @@
 # --- Nix / Build artifacts ---
 result
 result-*
-.direnv
+.direnv/
 .nix-profile
 
-# --- Secrets (If you move to sops-nix later) ---
+# --- Secrets ---
 secrets/*.key
 secrets/*.decrypted
 

@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Elevate to root
+if [[ "$EUID" -ne 0 ]]; then
+  exec sudo "$0" "$@"
+fi
+
 # How many days of generations to keep.
 # Default: 14 days
 KEEP_DAYS="${1:-14}"
