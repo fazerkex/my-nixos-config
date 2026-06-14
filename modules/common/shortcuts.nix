@@ -24,6 +24,7 @@
     "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+Return"; };
     "services/org.kde.dolphin.desktop" = { "_launch" = "Meta+F"; };
     "services/code.desktop" = { "_launch" = "Meta+C"; };
+    "services/org.kde.systemmonitor.desktop" = { "_launch" = "Meta+S"; };
     
   };
   
