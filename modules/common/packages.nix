@@ -8,7 +8,7 @@
     wl-clipboard
     gh
     localsend
-    steam
+    # steam
     libinput
     libinput-gestures
     starship

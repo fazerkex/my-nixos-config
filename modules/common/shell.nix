@@ -8,6 +8,7 @@
     shellAliases = {
       cd = "z";
       rebuild = "/home/mka/NixOS/rebuild.sh";
+      clean  = "/home/mka/NixOS/clean.sh";
     };
   };
 
