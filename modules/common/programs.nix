@@ -10,6 +10,7 @@
                 tomoki1207.pdf
                 ms-vscode.cpptools
                 pkief.material-icon-theme
+                donjayamanne.githistory
                 # Add other extensions here...
             ];
         };
