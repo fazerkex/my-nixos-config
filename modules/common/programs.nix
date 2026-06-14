@@ -14,7 +14,17 @@
                 # Add other extensions here...
             ];
         };
-  };
+        userSettings = {
+            "keyboard.dispatch" = "keyCode";
+        };
+        keybindings = [
+            {
+            key = "ctrl+#";
+            command = "editor.action.commentLine";
+            when = "editorTextFocus && !editorReadonly";
+            }
+        ];
+    };
 
     # Brave Browser
     programs.brave = {
@@ -23,16 +33,10 @@
             "--ozone-platform-hint=auto"
             "--enable-features=TouchpadOverscrollHistoryNavigation"
         ];
-    };
-
-    # Brave extensions
-    programs.chromium = {
-        enable = true;
-        package = pkgs.brave;
         extensions = [
             { id = "lppmekppnliemjclknbagdhoocikieoi"; }   # 7TV
             { id = "ailoabdmgclmfmhdagmlohpjlbpffblp"; }   # Surfshark
             { id = "ghmbeldphafepmbegfdlkpapadhbakde"; }   # Proton Pass
         ];
-  };
+    };
 }
