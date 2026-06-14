@@ -24,10 +24,13 @@
     configFile.kdeglobals.General.TerminalApplication = "ghostty";
     input.touchpads = [
       {
-        device = "*"; # Applies to all touchpads
-        naturalScrolling = true;
+        name = "Synaptics TM2438-005";
+        vendorId = "06cb";
+        productId = "5f41";
+
+        naturalScroll = true;
         tapToClick = true;
-        scrollMethod = "twofinger";
+        scrollMethod = "twoFingers";
       }
     ];
   };

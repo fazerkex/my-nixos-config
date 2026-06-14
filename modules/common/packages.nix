@@ -9,6 +9,7 @@
     gh
     localsend
     steam
+    libinput
     libinput-gestures
     starship
     zoxide
