@@ -1,6 +1,7 @@
 { pkgs, ... }:
-    # to set Taskbar and Desktop apps
-    
+
+# Custom desktop launchers for the Plasma panel and desktop icons.
+# Each app gets a .desktop entry so Plasma can pin it to the taskbar.
 let
   braveDesktop = pkgs.makeDesktopItem {
     name = "mka-brave";
@@ -57,7 +58,7 @@ let
   };
 in
 {
-  # Make the custom desktop launchers available to Plasma.
+  # Make the .desktop files available system-wide so Plasma can find them.
   home.packages = [
     braveDesktop
     steamDesktop
@@ -67,18 +68,24 @@ in
     localsendDesktop
   ];
 
-  # Replace the Plasma panel with one that has your pinned apps.
+  # Bottom panel layout — order of widgets = left to right.
   programs.plasma.panels = [
     {
       location = "bottom";
 
       widgets = [
+        # App launcher (start menu)
         {
           kickoff = {
             sortAlphabetically = true;
           };
         }
 
+        # Virtual desktop switcher — shows all 5 desktops before the taskbar.
+        # Number of desktops is set in home.nix via kwin.virtualDesktops.number.
+        { pager = { }; }
+
+        # Pinned app taskbar — add/remove entries here to change pinned apps.
         {
           iconTasks = {
             launchers = [
@@ -96,8 +103,10 @@ in
           };
         }
 
+        # System tray (network, volume, notifications, etc.)
         { systemTray = { }; }
 
+        # Clock — week starts on Monday
         {
           digitalClock = {
             calendar.firstDayOfWeek = "monday";
@@ -107,33 +116,28 @@ in
     }
   ];
 
-  # Put real .desktop files on the desktop.
+  # Place .desktop shortcuts on the desktop too.
   home.file = {
     "Desktop/Brave.desktop" = {
       text = builtins.readFile "${braveDesktop}/share/applications/mka-brave.desktop";
       executable = true;
     };
-
     "Desktop/Steam.desktop" = {
       text = builtins.readFile "${steamDesktop}/share/applications/mka-steam.desktop";
       executable = true;
     };
-
     "Desktop/VS Code.desktop" = {
       text = builtins.readFile "${vscodeDesktop}/share/applications/mka-vscode.desktop";
       executable = true;
     };
-
     "Desktop/System Monitor.desktop" = {
       text = builtins.readFile "${systemMonitorDesktop}/share/applications/mka-system-monitor.desktop";
       executable = true;
     };
-
     "Desktop/Dolphin.desktop" = {
       text = builtins.readFile "${dolphinDesktop}/share/applications/mka-dolphin.desktop";
       executable = true;
     };
-
     "Desktop/LocalSend.desktop" = {
       text = builtins.readFile "${localsendDesktop}/share/applications/mka-localsend.desktop";
       executable = true;

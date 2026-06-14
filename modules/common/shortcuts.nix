@@ -24,15 +24,14 @@
     "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+Return"; };
     "services/org.kde.dolphin.desktop" = { "_launch" = "Meta+F"; };
     "services/code.desktop" = { "_launch" = "Meta+C"; };
-    "services/org.kde.systemmonitor.desktop" = { "_launch" = "Meta+S"; };
-    
+    "services/mka-system-monitor.desktop" = { "_launch" = "Meta+S"; };    
   };
   
   # 2. Use 'hotkeys.commands' for custom shell commands (Brave, Proton Mail, etc.)
   programs.plasma.hotkeys.commands = {
     "launch-brave-app" = {
       name = "Launch Brave App";
-      command = "brave --app=https://brave.com";
+      command = "brave";
       key = "Meta+B";
     };
     
