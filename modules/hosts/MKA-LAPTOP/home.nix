@@ -22,6 +22,10 @@
     enable = true;
     kwin.virtualDesktops.number = 5;
     configFile.kdeglobals.General.TerminalApplication = "ghostty";
+    input.touchpad = {
+      naturalScrolling = true;
+      tapToClick = true;
+    };
   };
   
   xdg.configFile."ghostty/config".text = ''

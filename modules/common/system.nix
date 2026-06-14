@@ -17,4 +17,11 @@
   # Maintenance (Auto-GC)
   nix.gc = { automatic = true; dates = "weekly"; options = "--delete-older-than 14d"; };
   nix.settings.auto-optimise-store = true;
+
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true; # This sets it for the whole OS
+    };
+  };
 }
