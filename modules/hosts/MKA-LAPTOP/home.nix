@@ -22,10 +22,13 @@
     enable = true;
     kwin.virtualDesktops.number = 5;
     configFile.kdeglobals.General.TerminalApplication = "ghostty";
-    input.touchpad = {
-      naturalScrolling = true;
-      tapToClick = true;
-    };
+    input.touchpads = [ 
+      {
+        device = "*"; # Applies to all touchpads
+        naturalScrolling = true;
+        tapToClick = true;
+      }
+    ];
   };
   
   xdg.configFile."ghostty/config".text = ''
