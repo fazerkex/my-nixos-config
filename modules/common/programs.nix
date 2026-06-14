@@ -24,4 +24,15 @@
             "--enable-features=TouchpadOverscrollHistoryNavigation"
         ];
     };
+
+    # Brave extensions
+    programs.chromium = {
+        enable = true;
+        package = pkgs.brave;
+        extensions = [
+            { id = "lppmekppnliemjclknbagdhoocikieoi"; }   # 7TV
+            { id = "ailoabdmgclmfmhdagmlohpjlbpffblp"; }   # Surfshark
+            { id = "ghmbeldphafepmbegfdlkpapadhbakde"; }   # Proton Pass
+        ];
+  };
 }
