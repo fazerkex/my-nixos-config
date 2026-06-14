@@ -2,6 +2,7 @@
 
     programs.vscode = {
         enable = true;
+
         profiles.default = {
             extensions = with pkgs.vscode-extensions; [
                 bbenoist.nix
@@ -11,19 +12,20 @@
                 ms-vscode.cpptools
                 pkief.material-icon-theme
                 donjayamanne.githistory
-                # Add other extensions here...
+            ];
+
+            userSettings = {
+                "keyboard.dispatch" = "keyCode";
+            };
+
+            keybindings = [
+                {
+                    key = "ctrl+#";
+                    command = "editor.action.commentLine";
+                    when = "editorTextFocus && !editorReadonly";
+                }
             ];
         };
-        userSettings = {
-            "keyboard.dispatch" = "keyCode";
-        };
-        keybindings = [
-            {
-            key = "ctrl+#";
-            command = "editor.action.commentLine";
-            when = "editorTextFocus && !editorReadonly";
-            }
-        ];
     };
 
     # Brave Browser
