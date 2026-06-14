@@ -4,6 +4,7 @@
     ../../common/shortcuts.nix 
     ../../common/default_apps.nix
     ../../common/programs.nix
+    ../../common/plasma_launchers.nix
     ];
     
   home.stateVersion = "26.05";

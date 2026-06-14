@@ -1,5 +1,6 @@
 { pkgs, ... }: {
-
+    # These are managed by Home Manager.
+    
     programs.vscode = {
         enable = true;
 
@@ -41,7 +42,4 @@
             { id = "ghmbeldphafepmbegfdlkpapadhbakde"; }   # Proton Pass
         ];
     };
-
-    # Steam
-    programs.steam.enable = true;
 }

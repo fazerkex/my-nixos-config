@@ -1,4 +1,6 @@
 { pkgs, ... }: {
+    # These are managed by NixOS.
+    
   environment.systemPackages = with pkgs; [
     ghostty
     neovim
@@ -28,4 +30,7 @@
     nerd-fonts.symbols-only 
     nerd-fonts.jetbrains-mono 
   ];
+
+  # Steam
+    programs.steam.enable = true;
 }
