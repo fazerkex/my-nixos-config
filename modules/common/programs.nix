@@ -17,6 +17,8 @@
 
             userSettings = {
                 "keyboard.dispatch" = "keyCode";
+                # Activate Material Icon Theme as the file icon theme
+                "workbench.iconTheme" = "material-icon-theme";
             };
 
             keybindings = [
