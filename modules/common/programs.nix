@@ -41,4 +41,7 @@
             { id = "ghmbeldphafepmbegfdlkpapadhbakde"; }   # Proton Pass
         ];
     };
+
+    # Steam
+    programs.steam.enable = true;
 }
