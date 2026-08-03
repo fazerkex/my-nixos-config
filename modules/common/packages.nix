@@ -24,6 +24,8 @@
     bat 
     direnv
     brave
+    libreoffice
+    onlyoffice-desktopeditors
   ];
   
   fonts.packages = with pkgs; [ 
