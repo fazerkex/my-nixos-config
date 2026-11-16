@@ -143,3 +143,13 @@ calls through MCP, Tailscale login/connectivity, Connect pairing, and background
 service runtime. These require activation and/or interactive credentials. No
 services, firewall state, remote access, sudo configuration or login state were
 activated or modified during validation.
+
+## Legacy T3 installation
+
+The former nixpkgs `t3code` entry has been removed from the system package
+list. Only the pinned Nightly desktop and CLI are installed by this flake.
+The hidden `com.t3tools.T3Code.desktop` file created by Nightly itself is
+not a second installation. T3 protocol links are associated declaratively
+with `t3code-nightly.desktop`, which runs the NixOS-compatible wrapper.
+Older NixOS generations may retain the former package for rollback; they
+are not active installations and should not be deleted as application cleanup.

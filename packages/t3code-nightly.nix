@@ -30,7 +30,7 @@ let
       Icon=t3code-nightly
       Terminal=false
       Categories=Development;IDE;
-      MimeType=x-scheme-handler/t3code;
+      MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;
       DESKTOP
     '';
   };
