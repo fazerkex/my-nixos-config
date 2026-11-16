@@ -28,6 +28,7 @@
     onlyoffice-desktopeditors
     t3code
     opencode
+    codex
   ];
   
   fonts.packages = with pkgs; [ 
