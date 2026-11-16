@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-    # These are managed by NixOS.
-    
+  # These are managed by NixOS.
+
   environment.systemPackages = with pkgs; [
     ghostty
     neovim
@@ -17,25 +17,24 @@
     zoxide
     git
     nano
-    python3 
-    sops 
-    fastfetch 
-    fzf 
-    bat 
+    python3
+    sops
+    fastfetch
+    fzf
+    bat
     direnv
     brave
     libreoffice
     onlyoffice-desktopeditors
-    t3code
     opencode
     codex
   ];
-  
-  fonts.packages = with pkgs; [ 
-    nerd-fonts.symbols-only 
-    nerd-fonts.jetbrains-mono 
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.symbols-only
+    nerd-fonts.jetbrains-mono
   ];
 
   # Steam
-    programs.steam.enable = true;
+  programs.steam.enable = true;
 }

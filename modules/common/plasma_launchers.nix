@@ -8,7 +8,10 @@ let
     desktopName = "Brave";
     exec = "brave";
     icon = "brave-browser";
-    categories = [ "Network" "WebBrowser" ];
+    categories = [
+      "Network"
+      "WebBrowser"
+    ];
     startupWMClass = "brave-browser";
   };
 
@@ -26,7 +29,10 @@ let
     desktopName = "Visual Studio Code";
     exec = "code";
     icon = "vscode";
-    categories = [ "Development" "IDE" ];
+    categories = [
+      "Development"
+      "IDE"
+    ];
     startupWMClass = "Code";
   };
 
@@ -35,7 +41,10 @@ let
     desktopName = "System Monitor";
     exec = "plasma-systemmonitor";
     icon = "utilities-system-monitor";
-    categories = [ "System" "Monitor" ];
+    categories = [
+      "System"
+      "Monitor"
+    ];
     startupWMClass = "plasma-systemmonitor";
   };
 
@@ -44,7 +53,10 @@ let
     desktopName = "Dolphin";
     exec = "dolphin";
     icon = "system-file-manager";
-    categories = [ "System" "FileManager" ];
+    categories = [
+      "System"
+      "FileManager"
+    ];
     startupWMClass = "dolphin";
   };
 
@@ -53,7 +65,10 @@ let
     desktopName = "LocalSend";
     exec = "localsend";
     icon = "localsend";
-    categories = [ "Network" "FileTransfer" ];
+    categories = [
+      "Network"
+      "FileTransfer"
+    ];
     startupWMClass = "localsend";
   };
 in
@@ -92,6 +107,7 @@ in
               "applications:mka-brave.desktop"
               "applications:mka-steam.desktop"
               "applications:mka-vscode.desktop"
+              "applications:t3code-nightly.desktop"
               "applications:mka-system-monitor.desktop"
               "applications:mka-dolphin.desktop"
               "applications:mka-localsend.desktop"

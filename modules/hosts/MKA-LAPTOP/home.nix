@@ -1,20 +1,32 @@
-{ config, pkgs, inputs, ... }: {
-  imports = [ 
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ../../ai/home.nix
     inputs.plasma-manager.homeModules.plasma-manager
-    ../../common/shortcuts.nix 
+    ../../common/shortcuts.nix
     ../../common/default_apps.nix
     ../../common/programs.nix
     ../../common/plasma_launchers.nix
-    ];
-    
+  ];
+
   home.stateVersion = "26.05";
 
   # Git config
   programs.git = {
     enable = true;
     settings = {
-      user = { name = "maydin5"; email = "muhammed_kerim.aydin@smail.th-koeln.de"; };
-      init = { defaultBranch = "main"; };
+      user = {
+        name = "maydin5";
+        email = "muhammed_kerim.aydin@smail.th-koeln.de";
+      };
+      init = {
+        defaultBranch = "main";
+      };
     };
   };
 
@@ -35,7 +47,7 @@
       }
     ];
   };
-  
+
   xdg.configFile."ghostty/config".text = ''
     font-family = "JetBrainsMono Nerd Font"
     font-size = 14
