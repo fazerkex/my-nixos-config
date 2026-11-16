@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.plasma.shortcuts = {
     "Power Management" = {
-       "Switch Power Profile" = [ ];
+      "Switch Power Profile" = [ ];
     };
 
     "plasmashell" = {
@@ -21,12 +21,20 @@
       "Window Close" = "Meta+W";
     };
 
-    "services/com.mitchellh.ghostty.desktop" = { "_launch" = "Meta+Return"; };
-    "services/org.kde.dolphin.desktop" = { "_launch" = "Meta+F"; };
-    "services/code.desktop" = { "_launch" = "Meta+C"; };
-    "services/mka-system-monitor.desktop" = { "_launch" = "Meta+S"; };    
+    "services/com.mitchellh.ghostty.desktop" = {
+      "_launch" = "Meta+Return";
+    };
+    "services/org.kde.dolphin.desktop" = {
+      "_launch" = "Meta+F";
+    };
+    "services/code.desktop" = {
+      "_launch" = "Meta+C";
+    };
+    "services/mka-system-monitor.desktop" = {
+      "_launch" = "Meta+S";
+    };
   };
-  
+
   # 2. Use 'hotkeys.commands' for custom shell commands (Brave, Proton Mail, etc.)
   programs.plasma.hotkeys.commands = {
     "launch-brave-app" = {
@@ -34,7 +42,7 @@
       command = "brave";
       key = "Meta+B";
     };
-    
+
     "launch-proton-mail" = {
       name = "Launch Proton Mail";
       command = "brave --app=https://mail.proton.me";

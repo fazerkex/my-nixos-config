@@ -1,76 +1,41 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Rebuild the current host from your flake in ~/NixOS.
-# Optional:
-#   -u  force update flake inputs first
-#   -U  skip flake input updates
-#   -n  do not create a git commit before rebuilding
-
-CONFIG_DIR="$HOME/NixOS"
+CONFIG_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 HOST="$(hostname)"
-# Keep inputs current by default so package versions (like codex) move forward.
-AUTO_UPDATE_DEFAULT=true
-UPDATE="$AUTO_UPDATE_DEFAULT"
-NO_COMMIT=false
-
+UPDATE=false
+BUILD_ONLY=false
 usage() {
-  echo "Usage: rebuild [-u|-U] [-n] [commit message]"
-  echo
-  echo "Options:"
-  echo "  -u    Force 'nix flake update' before rebuilding"
-  echo "  -U    Skip 'nix flake update' before rebuilding"
-  echo "  -n    Skip git commit (test mode)"
-  echo
-  echo "Examples:"
-  echo "  rebuild \"tweak plasma shortcuts\""
-  echo "  rebuild -U \"quick rebuild without input updates\""
-  echo "  rebuild -u \"update inputs and rebuild\""
-  echo "  rebuild -n"
-  exit 1
+  echo "Usage: rebuild [-u|-U] [-b] [-n]"
+  echo "  -u  explicitly update flake inputs"
+  echo "  -U  preserve pins (default)"
+  echo "  -b  validate and build without activation"
+  echo "  -n  accepted for compatibility; commits are always manual"
 }
-
-while getopts ":unU" opt; do
+while getopts ':uUbn' opt; do
   case "$opt" in
     u) UPDATE=true ;;
     U) UPDATE=false ;;
-    n) NO_COMMIT=true ;;
-    *) usage ;;
+    b) BUILD_ONLY=true ;;
+    n) : ;;
+    *) usage; exit 2 ;;
   esac
 done
 shift $((OPTIND - 1))
-
-COMMIT_MSG="$*"
-
-if [[ "$NO_COMMIT" == false && -z "$COMMIT_MSG" ]]; then
-  echo "Error: provide a commit message, or use -n to skip commit."
+if (( $# )); then
+  echo "Commit messages are no longer accepted. Commit reviewed changes with git commit."
   usage
+  exit 2
 fi
-
 cd "$CONFIG_DIR"
-
-echo "--- Rebuilding for $HOST ---"
-
 if [[ "$UPDATE" == true ]]; then
-  echo "--- Updating flake inputs ---"
   nix flake update
 fi
-
-if [[ "$NO_COMMIT" == true ]]; then
-  echo "--- Skipping git commit (test mode) ---"
-else
-  echo "--- Committing config changes ---"
-  git add .
-
-  # Only commit if there is actually something staged.
-  if git diff --cached --quiet; then
-    echo "Nothing to commit."
-  else
-    git commit -m "$COMMIT_MSG"
-  fi
+nix flake check --no-update-lock-file
+nixos-rebuild build --flake ".#$HOST" --no-update-lock-file
+if [[ "$BUILD_ONLY" == true ]]; then
+  echo "Build complete. No activation performed."
+  exit 0
 fi
-
-echo "--- Running nixos-rebuild ---"
-sudo nixos-rebuild switch --flake ".#$HOST"
-
-echo "--- Done for $HOST ---"
+sudo nixos-rebuild switch --flake ".#$HOST" --no-update-lock-file
+echo "Activated $HOST. Review and commit changes separately."

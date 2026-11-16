@@ -20,8 +20,10 @@ nix build .#nixosConfigurations.MKA-LAPTOP.config.system.build.toplevel
 sudo nixos-rebuild switch --flake .#MKA-LAPTOP
 ```
 
-Do not use the repository's rebuild/update aliases for a pinned activation:
-they update all inputs by default. No activation has been performed by this task.
+The repository's `rebuild` now preserves pins and validates before activation;
+`rebuild -b` only builds. `update` explicitly refreshes inputs. See DEVELOPMENT.md.
+The initial AI configuration was activated after approval; later edits require
+a further approved rebuild.
 The system switch enables tailscaled, but does not sign in or enable routing.
 Home Manager merges the two MCP registrations and workspace-write/on-request
 permissions into writable Codex config, making a private initial backup at

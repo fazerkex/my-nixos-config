@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ../../development/home.nix
     ../../ai/home.nix
     inputs.plasma-manager.homeModules.plasma-manager
     ../../common/shortcuts.nix

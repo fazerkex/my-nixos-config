@@ -22,8 +22,6 @@
     fastfetch
     fzf
     bat
-    direnv
-    brave
     libreoffice
     onlyoffice-desktopeditors
     opencode
