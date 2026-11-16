@@ -3,31 +3,37 @@ set -euo pipefail
 
 # Rebuild the current host from your flake in ~/NixOS.
 # Optional:
-#   -u  update flake inputs first
+#   -u  force update flake inputs first
+#   -U  skip flake input updates
 #   -n  do not create a git commit before rebuilding
 
 CONFIG_DIR="$HOME/NixOS"
 HOST="$(hostname)"
-UPDATE=false
+# Keep inputs current by default so package versions (like codex) move forward.
+AUTO_UPDATE_DEFAULT=true
+UPDATE="$AUTO_UPDATE_DEFAULT"
 NO_COMMIT=false
 
 usage() {
-  echo "Usage: rebuild [-u] [-n] [commit message]"
+  echo "Usage: rebuild [-u|-U] [-n] [commit message]"
   echo
   echo "Options:"
-  echo "  -u    Run 'nix flake update' before rebuilding"
+  echo "  -u    Force 'nix flake update' before rebuilding"
+  echo "  -U    Skip 'nix flake update' before rebuilding"
   echo "  -n    Skip git commit (test mode)"
   echo
   echo "Examples:"
   echo "  rebuild \"tweak plasma shortcuts\""
+  echo "  rebuild -U \"quick rebuild without input updates\""
   echo "  rebuild -u \"update inputs and rebuild\""
   echo "  rebuild -n"
   exit 1
 }
 
-while getopts ":un" opt; do
+while getopts ":unU" opt; do
   case "$opt" in
     u) UPDATE=true ;;
+    U) UPDATE=false ;;
     n) NO_COMMIT=true ;;
     *) usage ;;
   esac
