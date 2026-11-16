@@ -26,7 +26,6 @@
     brave
     libreoffice
     onlyoffice-desktopeditors
-    nix-agent
     t3code
     opencode
   ];
