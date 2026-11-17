@@ -18,6 +18,11 @@
       "Switch to Desktop 3" = "Meta+3";
       "Switch to Desktop 4" = "Meta+4";
       "Switch to Desktop 5" = "Meta+5";
+      "Window to Desktop 1" = "Meta+Shift+1";
+      "Window to Desktop 2" = "Meta+Shift+2";
+      "Window to Desktop 3" = "Meta+Shift+3";
+      "Window to Desktop 4" = "Meta+Shift+4";
+      "Window to Desktop 5" = "Meta+Shift+5";
       "Window Close" = "Meta+W";
     };
 
