@@ -6,7 +6,7 @@ let
     url = "${base}/T3-Code-Nightly-x86_64.AppImage";
     hash = "sha256-5tr/FcF3zW0J+3Yav9YfeMJMC0tONKh2uD6l2I97llM=";
   };
-  extracted = pkgs.appimageTools.extractType2 {
+  extracted = pkgs.appimageTools.extract {
     pname = "t3code-nightly";
     inherit version src;
   };

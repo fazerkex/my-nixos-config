@@ -14,9 +14,22 @@ update -b          # explicitly update inputs, validate and build only
 update             # update, validate/build, then sudo activation
 ```
 
-`rebuild` preserves flake.lock by default and never stages or commits files.
-The legacy `-U` and `-n` flags are accepted. Commit-message arguments are no
-longer accepted; use `git diff`, `git add <reviewed files>`, and `git commit`.
+`rebuild` preserves flake.lock by default and does not commit unless requested.
+To build, commit reviewed changes, and push in one command:
+
+```sh
+git add <reviewed-files>
+rebuild -b -c "describe the change" -p
+```
+
+Omit `-b` to activate too; push then runs only after successful activation.
+`-c` commits after checks/build pass, using only the pre-staged changes. It
+rejects unstaged/untracked files or index changes during the build. It never
+runs `git add .`. The build can show a dirty-tree warning until the commit is
+made; that warning means uncommitted changes, not a failed build. A failed
+activation may leave a validated local commit, but skips the push.
+`-c` cannot combine with `-u` or `-n`; update/build first, review and stage the
+resulting lockfile, then run the commit command. `-U` preserves pins explicitly.
 Updates can change the lockfile even if a subsequent build fails; review it.
 Approve activation separately when asking an agent to run these commands.
 

@@ -108,6 +108,7 @@ in
               "applications:mka-steam.desktop"
               "applications:mka-vscode.desktop"
               "applications:t3code-nightly.desktop"
+              "applications:com.mitchellh.ghostty.desktop"
               "applications:mka-system-monitor.desktop"
               "applications:mka-dolphin.desktop"
               "applications:mka-localsend.desktop"

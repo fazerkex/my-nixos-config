@@ -9,7 +9,7 @@ ROOT = Path(os.environ.get("REPO_ROOT", Path(__file__).resolve().parents[1]))
 
 
 class MaintenanceTests(unittest.TestCase):
-    def run_script(self, script, *args):
+    def run_script(self, script, *args, fail_build=False):
         with tempfile.TemporaryDirectory() as directory:
             tmp = Path(directory)
             log = tmp / "commands"
@@ -19,6 +19,8 @@ class MaintenanceTests(unittest.TestCase):
                     "#!/bin/sh\n"
                     f"echo '{name}' \"$@\" >> \"$COMMAND_LOG\"\n"
                     + ("echo MKA-LAPTOP\n" if name == "hostname" else "")
+                    + ('if [ "$1" = diff ] && [ "$2" = --cached ]; then exit 1; fi\n' if name == "git" else "")
+                    + ("exit 1\n" if name == "nixos-rebuild" and fail_build else "")
                 )
                 command.chmod(0o755)
             env = dict(os.environ, PATH=f"{tmp}:{os.environ['PATH']}", COMMAND_LOG=str(log))
@@ -38,6 +40,25 @@ class MaintenanceTests(unittest.TestCase):
         result, calls = self.run_script("rebuild.sh", "-u", "-b")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("nix flake update", calls)
+
+    def test_commit_and_push_follow_successful_build(self):
+        result, calls = self.run_script("rebuild.sh", "-b", "-c", "reviewed change", "-p")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        build = next(i for i, x in enumerate(calls) if x.startswith("nixos-rebuild build"))
+        commit = calls.index("git commit -m reviewed change")
+        self.assertLess(build, commit)
+        self.assertLess(commit, calls.index("git push"))
+        self.assertFalse(any(x.startswith(("sudo", "git add")) for x in calls))
+
+    def test_failed_build_never_commits_or_pushes(self):
+        result, calls = self.run_script("rebuild.sh", "-b", "-c", "change", "-p", fail_build=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(any(x.startswith(("git commit", "git push", "sudo")) for x in calls))
+
+    def test_push_requires_explicit_commit(self):
+        result, calls = self.run_script("rebuild.sh", "-p")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(any(x.startswith(("nix ", "sudo", "git push")) for x in calls))
 
     def test_cleanup_dry_run_only_inspects(self):
         result, calls = self.run_script("clean.sh", "--dry-run", "30")
